@@ -43,12 +43,20 @@ from [Covid-Death_new_updated2]
 WHERE continent is NOT NULL
 GROUP BY continent
 ORDER BY Total_Death_Count DESC;
---By location
+--By location,Max death
 SELECT [location], MAX(CAST(total_deaths as int)) as Total_Death_Count
 from [Covid-Death_new_updated2]
 WHERE continent is NULL
 GROUP BY [location] 
 ORDER BY Total_Death_Count DESC;
+--By location, Total death
+Select location, SUM(cast(new_deaths as int)) as TotalDeathCount
+From [Covid-Death_new_updated2]
+Where continent is null 
+and location not in ('World', 'European Union', 'International')
+Group by location
+order by TotalDeathCount desc
+
 
 --Global
 SELECT [date], SUM(new_cases) as Total_Cases_Globally , SUM(new_deaths) as Total_Death_Globally,
