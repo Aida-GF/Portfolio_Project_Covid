@@ -43,7 +43,7 @@ from [Covid-Death_new_updated2]
 WHERE continent is NOT NULL
 GROUP BY continent
 ORDER BY Total_Death_Count DESC;
-
+--By location
 SELECT [location], MAX(CAST(total_deaths as int)) as Total_Death_Count
 from [Covid-Death_new_updated2]
 WHERE continent is NULL
