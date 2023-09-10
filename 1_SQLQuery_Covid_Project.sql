@@ -57,6 +57,16 @@ from [Covid-Death_new_updated2]
 WHERE continent is NOT NULL and new_cases <> 0
 GROUP BY [date]
 ORDER BY 1,2;
+--Improved code
+SELECT 
+    SUM(new_cases) as Total_Cases_Globally,
+    SUM(new_deaths) as Total_Death_Globally,
+    CASE 
+        WHEN SUM(new_cases) = 0 THEN 0 --division by zero
+        ELSE (SUM(new_deaths) * 100.0) / CAST(SUM(new_cases) AS DECIMAL(18, 2))
+    END as Death_Percentage_Global
+FROM [Covid-Death_new_updated2]
+WHERE continent IS NOT NULL AND new_cases <> 0;
 
 
 --Total vaccinated population globally
